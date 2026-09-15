@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prexel — Ingeniería de Software & Aplicaciones Web</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      /* Paleta Corporativa Limpia y Elegante */
+      --bg-main: #FFFFFF;
+      --bg-subtle: #F8FAFC;
+      --bg-card: #FFFFFF;
+      --bg-dark: #0F172A;
+      
+      --text-main: #0F172A;
+      --text-muted: #475569;
+      --text-subtle: #64748B;
+      
+      --border-light: #E2E8F0;
+      --border-medium: #CBD5E1;
+      --border-dark: #0F172A;
+      
+      --font-heading: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      --transition: all 0.2s ease-in-out;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-main);
+    }
+
+    body {
+      background: var(--bg-main);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── CONTAINER ── */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* ── HEADER CORPORATIVO ── */
+    header {
+      border-bottom: 1px solid var(--border-light);
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+    }
+
+    .brand-logo-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+
+    .brand-symbol {
+      width: 38px;
+      height: 38px;
+      background: var(--text-main);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 18px;
+      border-radius: 6px;
+    }
+
+    .brand-text-block {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-company {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-main);
+      line-height: 1.1;
+    }
+
+    .brand-founder-tag {
+      font-size: 11px;
+      color: var(--text-subtle);
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    nav a {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    nav a:hover {
+      color: var(--text-main);
+    }
+
+    .btn-header {
+      padding: 10px 20px;
+      background: var(--text-main);
+      color: #FFFFFF !important;
+      border-radius: 6px;
+    }
+
+    .btn-header:hover {
+      background: #1E293B;
+    }
+
+    /* ── LAYOUT ── */
+    main {
+      padding-top: 48px;
+      padding-bottom: 120px;
+    }
+
+    section {
+      margin-bottom: 100px;
+    }
+
+    /* ── HERO ── */
+    .hero-portfolio {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 48px;
+      align-items: center;
+      padding: 40px 0 64px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-light);
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-subtle);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 24px;
+      font-weight: 500;
+    }
+
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      background: #10B981;
+      border-radius: 50%;
+    }
+
+    .hero-headline {
+      font-family: var(--font-heading);
+      font-size: clamp(34px, 4vw, 48px);
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--text-main);
+      letter-spacing: -0.025em;
+      margin-bottom: 20px;
+    }
+
+    .hero-subhead {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .btn-dark {
+      background: var(--text-main);
+      color: #FFFFFF;
+      border: 1px solid var(--text-main);
+    }
+
+    .btn-dark:hover {
+      background: #1E293B;
+    }
+
+    .btn-whatsapp {
+      background: #0F172A;
+      color: #FFFFFF;
+      border: 1px solid #0F172A;
+    }
+
+    .btn-whatsapp:hover {
+      background: #000000;
+    }
+
+    /* CARD CORPORATIVA DE PRESENTACIÓN */
+    .executive-card {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-medium);
+      border-radius: 12px;
+      padding: 32px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+    }
+
+    .executive-card-header {
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-light);
+      margin-bottom: 20px;
+    }
+
+    .executive-name {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -0.01em;
+    }
+
+    .executive-role {
+      font-size: 13px;
+      color: var(--text-subtle);
+      font-weight: 500;
+    }
+
+    .executive-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+    }
+
+    .stat-label {
+      color: var(--text-subtle);
+    }
+
+    .stat-value {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* ── SECTION HEADINGS ── */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--text-main);
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+    }
+
+    .section-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-subtle);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── CAPACIDADES TÉCNICAS ── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .service-card {
+      background: var(--bg-main);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 28px;
+      transition: var(--transition);
+    }
+
+    .service-card:hover {
+      border-color: var(--border-dark);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    }
+
+    .service-icon {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-light);
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 16px;
+      color: var(--text-muted);
+    }
+
+    .service-title {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 10px;
+    }
+
+    .service-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── PORTFOLIO GRID DE PROYECTOS ── */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .portfolio-card {
+      background: var(--bg-main);
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+    }
+
+    .portfolio-card:hover {
+      border-color: var(--border-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+    }
+
+    .portfolio-card.flagship {
+      grid-column: span 2;
+      background: var(--bg-subtle);
+      border-color: var(--border-medium);
+    }
+
+    .portfolio-type {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-subtle);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: inline-block;
+      font-weight: 500;
+    }
+
+    .portfolio-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      padding: 3px 8px;
+      background: #FFFFFF;
+      color: var(--text-main);
+      border: 1px solid var(--border-light);
+      border-radius: 4px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .portfolio-title {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 12px;
+      line-height: 1.35;
+    }
+
+    .portfolio-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    /* AVISO TRANSPARENTE DE PROYECTO DE EJEMPLO */
+    .project-status-note {
+      font-size: 12px;
+      color: var(--text-subtle);
+      background: rgba(226, 232, 240, 0.5);
+      border-left: 3px solid var(--text-subtle);
+      padding: 6px 12px;
+      border-radius: 0 4px 4px 0;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+
+    .portfolio-link {
+      font-family: var(--font-heading);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .portfolio-card:hover .portfolio-link {
+      text-decoration: underline;
+    }
+
+    /* ── CERTIFICACIONES Y ACREDITACIONES ── */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .cert-card {
+      background: var(--bg-main);
+      border: 1px solid var(--border-light);
+      border-radius: 6px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: var(--transition);
+    }
+
+    .cert-card:hover {
+      border-color: var(--border-medium);
+      background: var(--bg-subtle);
+    }
+
+    .cert-issuer {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-subtle);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .cert-title {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.35;
+      margin-bottom: 12px;
+    }
+
+    .cert-date {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    /* ── CONTACTO CORPORATIVO ── */
+    .contact-block {
+      background: var(--bg-dark);
+      color: #FFFFFF;
+      border-radius: 12px;
+      padding: 64px 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .contact-left h2 {
+      font-family: var(--font-heading);
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+
+    .contact-left p {
+      color: #94A3B8;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .contact-channels {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .channel-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: #FFFFFF;
+      text-decoration: none;
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .channel-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateX(4px);
+    }
+
+    .channel-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border-light);
+      padding: 32px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-subtle);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .hero-portfolio { grid-template-columns: 1fr; gap: 32px; }
+      .portfolio-card.flagship { grid-column: span 1; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .cert-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-block { grid-template-columns: 1fr; gap: 32px; padding: 40px 24px; }
+    }
+
+    @media (max-width: 640px) {
+      header .header-inner { flex-direction: column; justify-content: center; gap: 12px; height: auto; padding: 16px 0; }
+      nav { flex-wrap: wrap; justify-content: center; gap: 14px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .cert-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="header-inner">
+        <a href="#" class="brand-logo-group">
+          <div class="brand-symbol">P</div>
+          <div class="brand-text-block">
+            <span class="brand-company">Prexel</span>
+            <span class="brand-founder-tag">Software Studio — Jorge Vera</span>
+          </div>
+        </a>
+        <nav>
+          <a href="#capacidades">Capacidades</a>
+          <a href="#portafolio">Desarrollos Prototipo</a>
+          <a href="#acreditaciones">Acreditaciones</a>
+          <a href="#contacto" class="btn-header">Contacto</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- HERO CORPORATIVO -->
+    <section class="hero-portfolio">
+      <div>
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span> Portafolio de Soluciones & Arquitectura
+        </div>
+        <h1 class="hero-headline">
+          Desarrollo de Software, Sistemas Web & Diseño UI
+        </h1>
+        <p class="hero-subhead">
+          En <strong>Prexel</strong>, bajo la dirección de <strong>Jorge Vera</strong>, diseñamos e implementamos soluciones de software a medida. Combinamos lógica de negocio backend robusta con interfaces de usuario limpias, funcionales y de alto estándar visual.
+        </p>
+        <div class="hero-cta-group">
+          <a href="#portafolio" class="btn btn-dark">Ver Código en GitHub</a>
+          <a href="https://wa.me/message/PTQBLDKHOFEHA1" target="_blank" rel="noopener" class="btn btn-whatsapp">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.762.459 3.48 1.332 5.001L2 22l5.132-1.343c1.466.799 3.119 1.22 4.877 1.221h.004c5.505 0 9.989-4.478 9.99-9.985 0-2.667-1.038-5.175-2.924-7.062C17.194 3.038 14.68 2 12.012 2z"/></svg>
+            Contacto Directo
+          </a>
+        </div>
+      </div>
+
+      <!-- CARD DE FICHA TÉCNICA -->
+      <div class="executive-card">
+        <div class="executive-card-header">
+          <div class="executive-name">Jorge Vera</div>
+          <div class="executive-role">Líder de Desarrollo & Software Engineer</div>
+        </div>
+        <div class="executive-stats">
+          <div class="stat-row">
+            <span class="stat-label">Especialidad:</span>
+            <span class="stat-value">Full Stack & Mobile</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Stack Principal:</span>
+            <span class="stat-value">Java, Laravel, Kotlin, React</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Ubicación:</span>
+            <span class="stat-value">Oaxaca, México</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Correo Oficial:</span>
+            <span class="stat-value">jorgeveraprxl@gmail.com</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAPACIDADES TÉCNICAS -->
+    <section id="capacidades">
+      <div class="section-header">
+        <h2 class="section-title">Capacidades & Tecnologías</h2>
+        <span class="section-tag">Stack & Metodologías</span>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <span class="service-icon">WEB FULL STACK</span>
+          <h3 class="service-title">Laravel & PHP Moderno</h3>
+          <p class="service-desc">Construcción de plataformas web interactivas, arquitectura MVC, gestión eficiente de bases de datos relacionales y diseño de paneles de control intuitivos.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">BACKEND & APIs</span>
+          <h3 class="service-title">Java & Spring Boot</h3>
+          <p class="service-desc">Diseño de APIs RESTful escalables, seguridad, persistencia de datos mediante ORM (JPA/Hibernate) y estructuración limpia en capas.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">FRONTEND & UI</span>
+          <h3 class="service-title">Diseño de Interfaz & CSS</h3>
+          <p class="service-desc">Maquetación web responsive con atención al detalle tipográfico, jerarquía visual, usabilidad y optimización del rendimiento en pantalla.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">MÓVIL</span>
+          <h3 class="service-title">Android Nativo (Kotlin)</h3>
+          <p class="service-desc">Desarrollo de aplicaciones móviles utilizando patrones de diseño como MVVM y Clean Architecture para asegurar un código mantenible.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">ESCRITORIO</span>
+          <h3 class="service-title">Software de Escritorio</h3>
+          <p class="service-desc">Sistemas locales en Java Swing integrados con APIs de terceros y bases de datos transaccionales.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">EXPLORACIÓN</span>
+          <h3 class="service-title">Angular & Multiplatform</h3>
+          <p class="service-desc">Implementación de arquitecturas modulares en Angular y pruebas con Kotlin Multiplatform (KMP).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTAFOLIO DE PROYECTOS (AVISO CLARO DE PROYECTOS DEMO/ESCOLARES) -->
+    <section id="portafolio">
+      <div class="section-header">
+        <h2 class="section-title">Proyectos de Ejemplo & Prototipos</h2>
+        <span class="section-tag">Muestras de Código & Arquitectura</span>
+      </div>
+
+      <div class="portfolio-grid">
+
+        <!-- 1. INVENTARIO LARAVEL -->
+        <a href="https://github.com/JorgeVera04/inventarioLaravel" target="_blank" rel="noopener" class="portfolio-card flagship">
+          <div>
+            <span class="portfolio-type">Plataforma Web Full Stack</span>
+            <div class="portfolio-tags">
+              <span class="tag">Laravel</span>
+              <span class="tag">PHP</span>
+              <span class="tag">MySQL</span>
+              <span class="tag">UI Design</span>
+            </div>
+            <h3 class="portfolio-title">Sistema de Gestión de Inventarios y Mantenimiento</h3>
+            <p class="portfolio-desc">
+              Plataforma web con interfaz personalizada para la gestión de activos informáticos, seguimiento de mantenimientos y administración de usuarios.
+            </p>
+            <div class="project-status-note">
+              <strong>Nota de Transparencia:</strong> Proyecto de demostración y arquitectura académica desarrollado como prototipo funcional de prueba.
+            </div>
+          </div>
+          <div class="portfolio-link">
+            Explorar Código Fuente en GitHub →
+          </div>
+        </a>
+
+        <!-- 2. GOBIERNO OAXACA -->
+        <a href="https://github.com/JorgeVera04/PruebaMobiliarioGobierno" target="_blank" rel="noopener" class="portfolio-card">
+          <div>
+            <span class="portfolio-type">Sistema Web Prototipo</span>
+            <div class="portfolio-tags">
+              <span class="tag">PHP</span>
+              <span class="tag">Bases de Datos</span>
+              <span class="tag">Frontend</span>
+            </div>
+            <h3 class="portfolio-title">Sistema de Gestión y Control de Mobiliario</h3>
+            <p class="portfolio-desc">
+              Sistema web diseñado como caso de estudio para la clasificación, inventario y control de activos fijos de oficinas institucionales.
+            </p>
+            <div class="project-status-note">
+              Prototipo de evaluación técnica y diseño de caso de uso.
+            </div>
+          </div>
+          <div class="portfolio-link">
+            Ver Código en GitHub →
+          </div>
+        </a>
+
+        <!-- 3. CLEAN ARCHITECTURE -->
+        <a href="https://github.com/JorgeVera04/CLEAN-ARQUITECTURE" target="_blank" rel="noopener" class="portfolio-card">
+          <div>
+            <span class="portfolio-type">Aplicación Móvil Prototipo</span>
+            <div class="portfolio-tags">
+              <span class="tag">Kotlin</span>
+              <span class="tag">Android</span>
+              <span class="tag">Clean Arch</span>
+            </div>
+            <h3 class="portfolio-title">Implementación de Clean Architecture en Android</h3>
+            <p class="portfolio-desc">
+              Muestra técnica orientada a la separación estricta de capas (Domain, Data, Presentation) para aplicaciones móviles nativas.
+            </p>
+            <div class="project-status-note">
+              Proyecto de referencia y buenas prácticas de arquitectura.
+            </div>
+          </div>
+          <div class="portfolio-link">
+            Ver Código en GitHub →
+          </div>
+        </a>
+
+        <!-- 4. MVVM -->
+        <a href="https://github.com/JorgeVera04/MVVC" target="_blank" rel="noopener" class="portfolio-card">
+          <div>
+            <span class="portfolio-type">Aplicación Móvil Prototipo</span>
+            <div class="portfolio-tags">
+              <span class="tag">Kotlin</span>
+              <span class="tag">Android</span>
+              <span class="tag">MVVM</span>
+            </div>
+            <h3 class="portfolio-title">Arquitectura MVVM & UI Reactiva en Kotlin</h3>
+            <p class="portfolio-desc">
+              Estructura nativa enfocada en el patrón Model-View-ViewModel para garantizar fluidez e independencia de datos en la interfaz.
+            </p>
+            <div class="project-status-note">
+              Ejemplo de implementación de patrones de diseño.
+            </div>
+          </div>
+          <div class="portfolio-link">
+            Ver Código en GitHub →
+          </div>
+        </a>
+
+        <!-- 5. KOTLIN MULTIPLATFORM -->
+        <a href="https://github.com/JorgeVera04/KotlinMultiplatform" target="_blank" rel="noopener" class="portfolio-card">
+          <div>
+            <span class="portfolio-type">Demostración Multiplataforma</span>
+            <div class="portfolio-tags">
+              <span class="tag">Kotlin</span>
+              <span class="tag">KMP</span>
+              <span class="tag">Cross-Platform</span>
+            </div>
+            <h3 class="portfolio-title">Proyecto Multiplataforma con Kotlin (KMP)</h3>
+            <p class="portfolio-desc">
+              Implementación experimental para compartir la lógica de negocio central entre múltiples entornos conservando capas nativas.
+            </p>
+            <div class="project-status-note">
+              Investigación técnica y prototipo multiplataforma.
+            </div>
+          </div>
+          <div class="portfolio-link">
+            Ver Código en GitHub →
+          </div>
+        </a>
+
+        <!-- 6. WEBSERVICE BUN -->
+        <a href="https://github.com/JorgeVera04/AndroidWebserviceBun" target="_blank" rel="noopener" class="portfolio-card">
+          <div>
+            <span class="portfolio-type">Integración de Servicios</span>
+            <div class="portfolio-tags">
+              <span class="tag">Kotlin</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">Bun</span>
+            </div>
+            <h3 class="portfolio-title">Conexión Android con Servicios Web en Bun</h3>
+            <p class="portfolio-desc">
+              Integración de cliente Android consumiendo endpoints creados en TypeScript bajo el entorno de ejecución Bun.
+            </p>
+            <div class="project-status-note">
+              Prueba de concepto de integración Full Stack.
+            </div>
+          </div>
+          <div class="portfolio-link">
+            Ver Código en GitHub →
+          </div>
+        </a>
+
+        <!-- 7. GESTIÓN DE PEDIDOS Y ALQUILERES -->
+        <a href="https://github.com/JorgeVera04/Alquileres" target="_blank" rel="noopener" class="portfolio-card">
+          <div>
+            <span class="portfolio-type">Prototipo Móvil</span>
+            <div class="portfolio-tags">
+              <span class="tag">Kotlin</span>
+              <span class="tag">Android</span>
+              <span class="tag">SQLite</span>
+            </div>
+            <h3 class="portfolio-title">Aplicación para Control de Pedidos y Alquileres</h3>
+            <p class="portfolio-desc">
+              Demostración funcional móvil para la gestión de catálogos, registro de renta de equipos y procesamiento local de pedidos.
+            </p>
+            <div class="project-status-note">
+              Proyecto escolar y prototipo de sistema comercial.
+            </div>
+          </div>
+          <div class="portfolio-link">
+            Ver Código en GitHub →
+          </div>
+        </a>
+
+        <!-- 8. ANGULAR -->
+        <a href="https://github.com/JorgeVera04/SumaAngular" target="_blank" rel="noopener" class="portfolio-card">
+          <div>
+            <span class="portfolio-type">Modulo Frontend</span>
+            <div class="portfolio-tags">
+              <span class="tag">Angular</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">Components</span>
+            </div>
+            <h3 class="portfolio-title">Módulos Web Interactivos en Angular</h3>
+            <p class="portfolio-desc">
+              Proyecto enfocado en la estructuración modular, reactividad de interfaz y gestión de componentes en Angular.
+            </p>
+            <div class="project-status-note">
+              Ejercicio de desarrollo web de demostración.
+            </div>
+          </div>
+          <div class="portfolio-link">
+            Ver Código en GitHub →
+          </div>
+        </a>
+
+        <!-- 9. CONVERSOR DE MONEDAS -->
+        <a href="https://github.com/JorgeVera04/ConversorDeMonedas" target="_blank" rel="noopener" class="portfolio-card">
+          <div>
+            <span class="portfolio-type">Software Java / Alura ONE</span>
+            <div class="portfolio-tags">
+              <span class="tag">Java</span>
+              <span class="tag">Java Swing</span>
+              <span class="tag">API REST</span>
+            </div>
+            <h3 class="portfolio-title">Conversor de Monedas de Escritorio</h3>
+            <p class="portfolio-desc">
+              Software de escritorio desarrollado en Java. Consume tasas en tiempo real desde una API externa con interfaz Swing.
+            </p>
+            <div class="project-status-note">
+              Proyecto de certificación técnica Oracle ONE.
+            </div>
+          </div>
+          <div class="portfolio-link">
+            Ver Código en GitHub →
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ACREDITACIONES Y CERTIFICACIONES -->
+    <section id="acreditaciones">
+      <div class="section-header">
+        <h2 class="section-title">Acreditaciones & Certificaciones</h2>
+        <span class="section-tag">Respaldo Técnico</span>
+      </div>
+
+      <div class="cert-grid">
+        <div class="cert-card">
+          <div class="cert-issuer">Oracle ONE · Alura Latam</div>
+          <div class="cert-title">Especialización Back-end Java & Spring Boot</div>
+          <div class="cert-date">JULIO 2024</div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-issuer">Alura Latam</div>
+          <div class="cert-title">Spring Boot 3: API Rest, Mejores Prácticas y Seguridad</div>
+          <div class="cert-date">JULIO 2024</div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-issuer">Alura Latam</div>
+          <div class="cert-title">Java: Lambdas, Streams y Spring Framework</div>
+          <div class="cert-date">JULIO 2024</div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-issuer">Alura Latam</div>
+          <div class="cert-title">Java: Orientación a Objetos, Colecciones y APIs</div>
+          <div class="cert-date">JUNIO 2024</div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-issuer">Alura Latam</div>
+          <div class="cert-title">Lógica de Programación Avanzada con JavaScript</div>
+          <div class="cert-date">MARZO 2024</div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-issuer">Alura Latam</div>
+          <div class="cert-title">HTML5 y CSS3: Arquitectura Web Front End</div>
+          <div class="cert-date">MARZO 2024</div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-issuer">Alura Latam</div>
+          <div class="cert-title">Git y GitHub: Control de Versiones Empresarial</div>
+          <div class="cert-date">MARZO 2024</div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-issuer">Google</div>
+          <div class="cert-title">Introducción al Desarrollo Web: HTML y CSS</div>
+          <div class="cert-date">DICIEMBRE 2023</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO CORPORATIVO -->
+    <section id="contacto">
+      <div class="contact-block">
+        <div class="contact-left">
+          <h2>Inicia tu proyecto con Prexel</h2>
+          <p>
+            Estamos a tu disposición para el desarrollo de sistemas a medida, aplicaciones web, aplicaciones móviles o consultoría en ingeniería de software.
+          </p>
+        </div>
+
+        <div class="contact-channels">
+          <!-- WHATSAPP -->
+          <a href="https://wa.me/message/PTQBLDKHOFEHA1" target="_blank" rel="noopener" class="channel-btn">
+            <div class="channel-info">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.762.459 3.48 1.332 5.001L2 22l5.132-1.343c1.466.799 3.119 1.22 4.877 1.221h.004c5.505 0 9.989-4.478 9.99-9.985 0-2.667-1.038-5.175-2.924-7.062C17.194 3.038 14.68 2 12.012 2z"/></svg>
+              <span>WhatsApp Directo</span>
+            </div>
+            <span>Enviar mensaje →</span>
+          </a>
+
+          <!-- CORREO -->
+          <a href="mailto:jorgeveraprxl@gmail.com" class="channel-btn">
+            <div class="channel-info">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+              <span>jorgeveraprxl@gmail.com</span>
+            </div>
+            <span>Escribir correo →</span>
+          </a>
+
+          <!-- FACEBOOK -->
+          <a href="https://www.facebook.com/share/1K9VtU6S91/?mibextid=wwXIfr" target="_blank" rel="noopener" class="channel-btn">
+            <div class="channel-info">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              <span>Facebook Oficial</span>
+            </div>
+            <span>Ver página →</span>
+          </a>
+
+          <!-- GITHUB -->
+          <a href="https://github.com/JorgeVera04" target="_blank" rel="noopener" class="channel-btn">
+            <div class="channel-info">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              <span>GitHub Corporativo</span>
+            </div>
+            <span>Ver repositorios →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <span>© 2026 PREXEL — INGENIERÍA DE SOFTWARE & DESARROLLO WEB</span>
+      <span>JORGE VERA | OAXACA, MÉXICO</span>
+    </footer>
+
+  </main>
+
+</body>
+</html>
